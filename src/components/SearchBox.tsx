@@ -7,7 +7,7 @@ const SearchBox = () => {
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!input) return;
-    navigate(`/search?term=${input}`);
+    navigate(`/search?q=${input}`);
   };
 
   return (
