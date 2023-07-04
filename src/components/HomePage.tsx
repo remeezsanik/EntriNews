@@ -1,6 +1,5 @@
 import NewsList from "./NewsList";
 
-
 const HomePage = () => {
   var news: NewsData;
 

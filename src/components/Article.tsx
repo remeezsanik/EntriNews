@@ -1,3 +1,5 @@
+import ReadMoreButton from "../utils/ReadMoreButton";
+
 type IProps = {
   article: Article;
 };
@@ -5,9 +7,8 @@ type IProps = {
 const Article = ({ article }: IProps) => {
   return (
     <article
-      className="bg-slate-100 dark:g-slate-800 flex flex-col rounded-lg shadow-s hover:scale-105 hover:shadow-lg
-  hover:bg-slate-200 transition-all duration-200 ease-out"
-    >
+      className="bg-slate-100 dark:bg-slate-800 flex flex-col rounded-lg shadow-s hover:scale-105 hover:shadow-lg
+  hover:bg-slate-200 transition-all duration-200 ease-out">
       {article.image && (
         <img
           src={article.image}
@@ -17,10 +18,10 @@ const Article = ({ article }: IProps) => {
       )}
       <div className="flex-1 flex flex-col">
         <div className="flex-1 flex flex-col p-5">
-          <h2 className="font-serif font-bold">{article.title}</h2>
+          <h2 className="font-serif font-bold dark:text-gray-200">{article.title}</h2>
 
           <section className="flex-1 mt-2">
-            <p className="text-xs line-clamp-3 md:line-clamp-6">
+            <p className="text-xs line-clamp-3 md:line-clamp-6 dark:text-gray-200">
               {article.description}
             </p>
           </section>
@@ -30,6 +31,7 @@ const Article = ({ article }: IProps) => {
             <p>{article.publishedAt}</p>
           </footer>
         </div>
+        <ReadMoreButton article={article}/>
       </div>
     </article>
   );

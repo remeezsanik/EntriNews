@@ -1,20 +1,23 @@
-import { Bars3Icon } from "@heroicons/react/24/solid";
-import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
+import DarkModeButton from "../utils/DarkModeButton";
 
 const Header = () => {
   return (
     <header>
       <div className="flex justify-between p-10 items-center">
-        <Bars3Icon className="h-8 w-8 cursor-pointer hover:text-orange-400" />
-        <Link to="/"
-          className="font-serif text-4xl text-center underline decoration-orange-400">
-          Entri News
+        <Link to="/">
+          <img
+            src="/files/entri_small.jpg"
+            alt="Entri Logo"
+            className="h-8 w-8 md:h-12 md:w-12 cursor-pointer rounded-full"
+          />
         </Link>
+        <h1 className="font-serif text-2xl md:text-4xl text-center underline decoration-orange-400">
+          Entri News
+        </h1>
         {/* dark mode */}
         <div>
-          <MoonIcon className="h-8 w-8  cursor-pointer hover:text-orange-400" />
-          {/* <SunIcon className="h-8 w-8 cursor-pointer text-orange-400" /> */}
+          <DarkModeButton />
         </div>
       </div>
     </header>

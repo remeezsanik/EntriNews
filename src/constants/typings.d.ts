@@ -1,7 +1,6 @@
 
 type Categories = "general"|"business"| "entertainment"| "health"|"science"|"sports"| "technology"
 
-
 type Article = {
     title: string;
     description: string;
