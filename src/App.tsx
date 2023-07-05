@@ -1,20 +1,22 @@
+import ArticleList from "./articles/ArticleList";
+import ArticlePage from "./articles/ArticlePage";
 import Header from "./components/Header";
-import HomePage from "./components/HomePage";
-import NavBar from "./components/NavBar";
-import Providers from "./components/Providers";
-import SearchBox from "./components/SearchBox";
+import { Routes, Route } from "react-router-dom";
+import Weather from "./weather/Weather";
 
 function App() {
   return (
-    <div className="bg-[#F5F5F7] dark:bg-[#1D1D1F] transition-all duration-700">
-      <Providers>
+    <div className="bg-[#F5F5F7] dark:bg-[#1D1D1F] h-screen transition-all duration-700">
+      <div className="sticky top-0 z-10">
         <Header />
-        <div className="max-w-6xl mx-auto">
-          <NavBar />
-          <SearchBox />
-          <HomePage />
-        </div>
-      </Providers>
+      </div>
+      <div className="max-w-6xl mx-auto scroll-smooth">
+      <Weather />
+        <Routes>
+          <Route path="/" element={<ArticleList />} />
+          <Route path="/article/:title" element={<ArticlePage />} />
+        </Routes>
+      </div>
     </div>
   );
 }

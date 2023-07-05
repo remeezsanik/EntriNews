@@ -4,7 +4,7 @@ import DarkModeButton from "../utils/DarkModeButton";
 const Header = () => {
   return (
     <header>
-      <div className="flex justify-between p-10 items-center">
+      <div className="flex justify-between p-10 items-center bg-[#F5F5F7] dark:bg-[#1D1D1F]">
         <Link to="/">
           <img
             src="/files/entri_small.jpg"
@@ -13,7 +13,7 @@ const Header = () => {
           />
         </Link>
         <h1 className="font-serif text-2xl md:text-4xl text-center underline decoration-orange-400">
-          Entri News
+          The Entri Times
         </h1>
         {/* dark mode */}
         <div>

@@ -1,20 +1,27 @@
 
-type Categories = "general"|"business"| "entertainment"| "health"|"science"|"sports"| "technology"
+type Categories = "Top Headlines"|"business"| "entertainment"| "health"|"science"|"sports"| "technology"
 
 type Article = {
     title: string;
     description: string;
     content: string;
-    url: string;
-    image: string | null;
-    publishedAt: string;
-    source: {
+    url?: string;
+    urlToImage?:string | null;
+    author?:string;
+    publishedAt?: string;
+    source?: {
         name: string;
-        url: string;
+        id?: string;
     }
 }
 
 type NewsData = {
-    totalArticles :number;
-    articles: Article[];
+    data: {
+    totalResults: number;
+     articles: Article[];
+    }
+}
+
+type State = {
+    newsReducer: INewsState;
 }
