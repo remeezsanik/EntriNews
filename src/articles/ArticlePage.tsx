@@ -22,7 +22,7 @@ const ArticlePage = () => {
         to="/"
         className="py-5 px-2 md:px-0 hover:text-orange-400 text-sm md:text-xl"
       >
-        &larr; back
+        &larr; Back
       </Link>
       {article && (
         <div className="flex flex-col h-full pb-24 px-0 lg:px-10">
