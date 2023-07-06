@@ -1,6 +1,4 @@
 
-type Categories = "Top Headlines"|"business"| "entertainment"| "health"|"science"|"sports"| "technology"
-
 type Article = {
     title: string;
     description: string;

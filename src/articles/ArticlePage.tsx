@@ -6,10 +6,9 @@ import { Link, useParams } from "react-router-dom";
 const ArticlePage = () => {
   const params = useParams();
   const dispatch = useDispatch();
-  const { news } = useSelector((state: State) => state.newsReducer);
-
+  const { news, lang } = useSelector((state: State) => state.newsReducer);
   useEffect(() => {
-    dispatch(getNews());
+    dispatch(getNews(lang));
   }, []);
 
   const articleItem = news.find(
@@ -18,20 +17,21 @@ const ArticlePage = () => {
   const article: Article = articleItem;
 
   return (
-    <div className="h-screen">
+    <div className="h-full">
+      <Link
+        to="/"
+        className="py-5 px-2 md:px-0 hover:text-orange-400 text-sm md:text-xl"
+      >
+        &larr; back
+      </Link>
       {article && (
-        <section className="flex flex-col pb-24 px-0 lg:px-10">
-          <Link to="/" className="py-5 px-2 md:px-0 hover:text-orange-400 text-sm md:text-xl">
-          &larr; back
-          </Link>
-          {article.urlToImage && (
-            <img
-              src={article.urlToImage!}
-              alt={article.title!}
-              className="h-42 px-2 md:px-0 mx-auto object-cover rounded-lg shadow-md"
-            />
-          )}
-          <div className="px-2 md:px-5 lg:px-10">
+        <div className="flex flex-col h-full pb-24 px-0 lg:px-10">
+          <img
+            src={article.urlToImage || "/files/entri_small.jpg"}
+            alt={article.title!}
+            className="h-42 px-2 md:px-0 mt-5 mx-auto object-cover rounded-lg shadow-md"
+          />
+          <div className="px-2 md:px-5 lg:px-10 overflow-hidden">
             <h1 className="headerTitle px-0 no-underline pb-2">
               {article.title!}
             </h1>
@@ -50,7 +50,7 @@ const ArticlePage = () => {
             <p className="px-2 mt-2">{article.description!}</p>
             <p className="px-2 mt-3">{article.content!}</p>
           </div>
-        </section>
+        </div>
       )}
     </div>
   );
