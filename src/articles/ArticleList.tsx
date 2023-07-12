@@ -6,20 +6,41 @@ import ScrollerText from "../utils/ScrollerText";
 
 const ArticleList = () => {
   const dispatch = useDispatch();
-  const { news } = useSelector((state: State) => state.newsReducer);
+  const { news, error } = useSelector((state: State) => state.newsReducer);
   const [sortOption, setSortOption] = useState("newest");
   const [keyword, setKeyword] = useState("");
   const [selectedLang, setSelectedLang] = useState("en");
+  const [page, setPage] = useState(3);
+  const [loading, setLoading] = useState(false)
   const languages = ["en", "ar", "fr", "es", "it", "pt"];
 
   useEffect(() => {
-    dispatch(getNews(selectedLang));
-  }, [selectedLang]);
+    dispatch(getNews(selectedLang, page));
+    if(error) {
+      setLoading(false)
+    }
+  }, [selectedLang,page]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleInfiniteScroll);
+    return ()=> window.removeEventListener("scroll", handleInfiniteScroll);
+  }, []);
 
   const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSortOption(event.target.value);
   };
 
+  const handleInfiniteScroll = async () => {
+    try {
+      if (window.innerHeight + document.documentElement.scrollTop + 1 >= document.documentElement.scrollHeight) {
+        setLoading(true)
+        setPage((prev) => prev + 3);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(event.target.value);
   };
@@ -103,6 +124,8 @@ const ArticleList = () => {
           ))
         )}
       </div>
+      {loading && <p className="text-orange-400 text-xl md:text-2xl text-center">Loading...</p>}
+      {error && <p className="text-orange-400 text-xl md:text-2xl text-center">List Completed</p>}
     </>
   );
 };
